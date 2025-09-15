@@ -21,7 +21,7 @@
   </header>
   <main>
     <section class="hero">
-      <h2>Wähle dein Projekt 🎨🤖⚽</h2>
+      <h2>⭐|   Wähle dein Projekt!   |⭐</h2>
       <p>Entdecke spannende Angebote für die Projekttage und sichere dir deinen Platz.</p>
     </section>
     <section class="filters">
@@ -57,9 +57,7 @@
       const nav = document.getElementById('main-nav');
       const menuItems = [
         { href: "index.html", label: "Startseite" },
-        { href: "login.html", label: "Login" },
-        { href: "schüler.html", label: "Schülerbereich" },
-        { href: "lehrer.html", label: "Lehrerbereich" }
+        { href: "login.html", label: "Login" }
       ];
       nav.innerHTML = menuItems.map(item => `<a href="${item.href}">${item.label}</a>`).join('');
       burger.addEventListener('click', function(e) {

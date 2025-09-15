@@ -17,7 +17,7 @@
         <rect y="21" width="32" height="3.5" rx="1.5" fill="#2563eb"/>
       </svg>
     </button>
-    <nav id="main-nav" class="dropdown-portal" style="display:none;position:absolute;"></nav>
+    <nav id="main-nav"></nav>
   </header>
   <main>
     <section class="admin-hero">
@@ -85,42 +85,6 @@
   <footer>
     <p>&copy; 2025 Projekttage App. Entwickelt von Bastelhannes.</p>
   </footer>
-  <script>
-    // Unified burger menu logic for all pages
-    document.addEventListener('DOMContentLoaded', function() {
-      const burger = document.getElementById('burger');
-      const nav = document.getElementById('main-nav');
-      const menuItems = [
-        { href: "index.html", label: "Startseite" },
-        { href: "login.html", label: "Login" },
-        { href: "schüler.html", label: "Schülerbereich" },
-        { href: "lehrer.html", label: "Lehrerbereich" }
-      ];
-      nav.innerHTML = menuItems.map(item => `<a href="${item.href}">${item.label}</a>`).join('');
-      burger.addEventListener('click', function(e) {
-        e.stopPropagation();
-        nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-        nav.classList.toggle('open');
-        const rect = burger.getBoundingClientRect();
-        nav.style.top = (rect.bottom + window.scrollY + 8) + 'px';
-        nav.style.right = (window.innerWidth - rect.right + 2) + 'px';
-      });
-      document.addEventListener('click', function(e) {
-        if (!nav.contains(e.target) && !burger.contains(e.target)) {
-          nav.style.display = 'none';
-          nav.classList.remove('open');
-        }
-      });
-      window.addEventListener('resize', function() {
-        nav.style.display = 'none';
-        nav.classList.remove('open');
-      });
-      window.addEventListener('scroll', function() {
-        nav.style.display = 'none';
-        nav.classList.remove('open');
-      });
-    });
-  </script>
   <script src="js/menu.js"></script>
   <script src="js/lehrer.js"></script>
 </body>

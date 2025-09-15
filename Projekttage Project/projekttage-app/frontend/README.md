@@ -1,76 +1,76 @@
 # Projekttage App
 
-## Overview
-The Projekttage App is a web application designed to facilitate project management for school projects. It allows teachers to create, manage, and view projects, while pupils can browse and sign up for these projects. The application includes authentication for both teachers and pupils.
+## Übersicht
+Die Projekttage App ist eine Webanwendung, die das Projektmanagement für Schulprojekte erleichtert. Sie ermöglicht Lehrern, Projekte zu erstellen, zu verwalten und einzusehen, während Schüler diese Projekte durchsuchen und sich dafür anmelden können. Die Anwendung umfasst eine Authentifizierung für Lehrer und Schüler.
 
-## Project Structure
-The project is divided into two main parts: the backend and the frontend.
+## Projektstruktur
+Das Projekt ist in zwei Hauptteile unterteilt: das Backend und das Frontend.
 
 ### Backend
-- **Controllers**: Handle the business logic for authentication, project management, and pupil management.
-  - `authController.ts`: Functions for user login and registration.
-  - `projectController.ts`: Functions for managing projects (CRUD operations).
-  - `pupilController.ts`: Functions for managing pupil-related operations.
+- **Controller**: Behandeln die Geschäftslogik für Authentifizierung, Projektmanagement und Schülerverwaltung.
+  - `authController.ts`: Funktionen für Benutzeranmeldung und -registrierung.
+  - `projectController.ts`: Funktionen für die Verwaltung von Projekten (CRUD-Operationen).
+  - `pupilController.ts`: Funktionen für die Verwaltung von schülerbezogenen Operationen.
   
-- **Models**: Define the data structures used in the application.
-  - `project.ts`: Project model with properties like title, teacher, year groups, and participants.
-  - `pupil.ts`: Pupil model with properties like name, email, and voted projects.
-  - `teacher.ts`: Teacher model with properties like name, email, and password.
+- **Modelle**: Definieren die Datenstrukturen, die in der Anwendung verwendet werden.
+  - `project.ts`: Projektmodell mit Eigenschaften wie Titel, Lehrer, Jahrgangsstufen und Teilnehmer.
+  - `pupil.ts`: Schülermodell mit Eigenschaften wie Name, E-Mail und gewählte Projekte.
+  - `teacher.ts`: Lehrermodell mit Eigenschaften wie Name, E-Mail und Passwort.
 
-- **Routes**: Define the API endpoints for the application.
-  - `authRoutes.ts`: Routes for authentication.
-  - `projectRoutes.ts`: Routes for project management.
-  - `pupilRoutes.ts`: Routes for pupil management.
+- **Routen**: Definieren die API-Endpunkte der Anwendung.
+  - `authRoutes.ts`: Routen für die Authentifizierung.
+  - `projectRoutes.ts`: Routen für das Projektmanagement.
+  - `pupilRoutes.ts`: Routen für die Schülerverwaltung.
 
-- **Middleware**: Contains functions for protecting routes and ensuring authentication.
-  - `auth.ts`: Middleware for route protection.
+- **Middleware**: Enthält Funktionen zum Schutz von Routen und zur Sicherstellung der Authentifizierung.
+  - `auth.ts`: Middleware für den Routenschutz.
 
-- **Database**: Handles the database connection and configuration.
+- **Datenbank**: Verwaltet die Datenbankverbindung und -konfiguration.
 
-- **Server**: Entry point of the application, setting up the Express server.
+- **Server**: Einstiegspunkt der Anwendung, der den Express-Server einrichtet.
 
 ### Frontend
-- **Public**: Contains the HTML files for the application.
-  - `index.html`: Main HTML file.
-  - `lehrer.html`: Teacher interface for managing projects.
-  - `schüler.html`: Pupil interface for viewing and signing up for projects.
-  - `login.html`: Login interface for both teachers and pupils.
+- **Public**: Enthält die HTML-Dateien der Anwendung.
+  - `index.html`: Haupt-HTML-Datei.
+  - `lehrer.html`: Lehreroberfläche zur Verwaltung von Projekten.
+  - `schüler.html`: Schüleroberfläche zur Ansicht und Anmeldung bei Projekten.
+  - `login.html`: Login-Oberfläche für Lehrer und Schüler.
 
-- **Src**: Contains JavaScript and CSS files.
-  - **JS**: JavaScript files for handling interactions.
-    - `lehrer.js`: Functions for teacher interactions.
-    - `schüler.js`: Functions for pupil interactions.
-    - `login.js`: Functions for user authentication.
-  - **CSS**: Styles for the frontend application.
+- **Src**: Enthält JavaScript- und CSS-Dateien.
+  - **JS**: JavaScript-Dateien zur Handhabung von Interaktionen.
+    - `lehrer.js`: Funktionen für Lehrerinteraktionen.
+    - `schüler.js`: Funktionen für Schülerinteraktionen.
+    - `login.js`: Funktionen für die Benutzeranmeldung.
+  - **CSS**: Stile für die Frontend-Anwendung.
 
-## Features
-- **User Authentication**: Both teachers and pupils can log in to access their respective functionalities.
-- **Project Management**: Teachers can add, update, and delete projects, as well as view pupils who have signed up for each project.
-- **Project Browsing**: Pupils can browse available projects and sign up for them.
+## Funktionen
+- **Benutzerauthentifizierung**: Sowohl Lehrer als auch Schüler können sich anmelden, um auf ihre jeweiligen Funktionen zuzugreifen.
+- **Projektmanagement**: Lehrer können Projekte hinzufügen, aktualisieren und löschen sowie Schüler einsehen, die sich für jedes Projekt angemeldet haben.
+- **Projektübersicht**: Schüler können verfügbare Projekte durchsuchen und sich dafür anmelden.
 
-## Getting Started
-1. Clone the repository.
-2. Navigate to the backend directory and install dependencies:
+## Erste Schritte
+1. Klonen Sie das Repository.
+2. Navigieren Sie in das Backend-Verzeichnis und installieren Sie die Abhängigkeiten:
    ```
    cd backend
    npm install
    ```
-3. Set up the database connection in `db.ts`.
-4. Start the backend server:
+3. Richten Sie die Datenbankverbindung in `db.ts` ein.
+4. Starten Sie den Backend-Server:
    ```
    npm start
    ```
-5. Navigate to the frontend directory and install dependencies:
+5. Navigieren Sie in das Frontend-Verzeichnis und installieren Sie die Abhängigkeiten:
    ```
    cd frontend
    npm install
    ```
-6. Open the `public/index.html` file in a web browser to access the application.
+6. Öffnen Sie die Datei `public/index.html` in einem Webbrowser, um auf die Anwendung zuzugreifen.
 
-## Future Improvements
-- Implement a voting system for pupils to rate projects.
-- Enhance the user interface for better usability.
-- Add more detailed project descriptions and images.
+## Zukünftige Verbesserungen
+- Implementierung eines Bewertungssystems, mit dem Schüler Projekte bewerten können.
+- Verbesserung der Benutzeroberfläche für eine bessere Benutzerfreundlichkeit.
+- Hinzufügen detaillierterer Projektbeschreibungen und -bilder.
 
-## License
-This project is licensed under the MIT License.
+## Lizenz
+Dieses Projekt ist unter der MIT-Lizenz lizenziert.

@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Login - Projekttages</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../src/css/base.css">
   <link rel="stylesheet" href="../src/css/login.css">
 </head>
 <body>
@@ -23,8 +22,8 @@
     <section class="login-form">
       <h2>Bitte einloggen</h2>
       <form id="login-form">
-        <label for="email">E-Mail:</label>
-        <input type="email" id="email" required placeholder="E-Mail eingeben">
+        <label for="username">Nutzername:</label>
+        <input type="username" id="username" required placeholder="Nutzername eingeben">
 
         <label for="password">Passwort:</label>
         <input type="password" id="password" required placeholder="Passwort eingeben">
@@ -40,7 +39,7 @@
     </section>
   </main>
   <footer>
-    <p>&copy; 2023 Projekttage App. Alle Rechte vorbehalten.</p>
+    <p>&copy; 2025 Projekttage App. Entwickelt von Bastelhannes.</p>
   </footer>
   <script>
     // Unified burger menu logic for all pages
@@ -49,9 +48,7 @@
       const nav = document.getElementById('main-nav');
       const menuItems = [
         { href: "index.html", label: "Startseite" },
-        { href: "login.html", label: "Login" },
-        { href: "schüler.html", label: "Schülerbereich" },
-        { href: "lehrer.html", label: "Lehrerbereich" }
+        { href: "login.html", label: "Login" }
       ];
       nav.innerHTML = menuItems.map(item => `<a href="${item.href}">${item.label}</a>`).join('');
       burger.addEventListener('click', function(e) {
@@ -78,6 +75,6 @@
       });
     });
   </script>
-  <script src="js/login.js"></script>
+  <script src="../src/js/login.js"></script>
 </body>
 </html>
