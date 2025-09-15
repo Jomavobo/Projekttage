@@ -7,18 +7,18 @@
   <link rel="stylesheet" href="../src/css/base.css">
   <link rel="stylesheet" href="../src/css/login.css">
 </head>
-<body style="overflow-x:hidden;">
-  <header style="position:relative;z-index:1001;display:flex;align-items:center;justify-content:space-between;min-height:80px;">
-    <h1 style="margin:0;font-size:2.3rem;letter-spacing:-1px;">Projekttage Login</h1>
-    <button class="burger" id="burger" aria-label="Menü öffnen" style="background:none;border:none;cursor:pointer;padding:0.5rem;margin-left:1.5rem;display:flex;align-items:center;z-index:1101;">
+<body>
+  <header>
+    <h1>Projekttage Login</h1>
+    <button class="burger" id="burger" aria-label="Menü öffnen">
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect y="7" width="32" height="3.5" rx="1.5" fill="#2563eb"/>
         <rect y="14" width="32" height="3.5" rx="1.5" fill="#2563eb"/>
         <rect y="21" width="32" height="3.5" rx="1.5" fill="#2563eb"/>
       </svg>
     </button>
+    <nav id="main-nav" class="dropdown-portal" style="display:none;position:absolute;"></nav>
   </header>
-  <nav id="main-nav-portal" class="dropdown-portal" style="display:none;position:absolute;"></nav>
   <main>
     <section class="login-form">
       <h2>Bitte einloggen</h2>
@@ -43,10 +43,10 @@
     <p>&copy; 2023 Projekttage App. Alle Rechte vorbehalten.</p>
   </footer>
   <script>
-    // Minimal, robust burger menu for login page
+    // Unified burger menu logic for all pages
     document.addEventListener('DOMContentLoaded', function() {
       const burger = document.getElementById('burger');
-      const nav = document.getElementById('main-nav-portal');
+      const nav = document.getElementById('main-nav');
       const menuItems = [
         { href: "index.html", label: "Startseite" },
         { href: "login.html", label: "Login" },
@@ -58,7 +58,6 @@
         e.stopPropagation();
         nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
         nav.classList.toggle('open');
-        // Position below burger
         const rect = burger.getBoundingClientRect();
         nav.style.top = (rect.bottom + window.scrollY + 8) + 'px';
         nav.style.right = (window.innerWidth - rect.right + 2) + 'px';

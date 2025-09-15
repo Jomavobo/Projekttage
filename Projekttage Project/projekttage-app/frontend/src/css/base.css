@@ -27,22 +27,19 @@ header {
   color: #fff;
   padding: 2.2rem 2rem 1.2rem 2rem;
   border-radius: 0 0 2.5rem 2.5rem;
-  box-shadow: var(--shadow);
+  box-shadow: 0 8px 32px rgba(37,99,235,0.08);
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  min-height: 80px;
   position: relative;
 }
+
 header h1 {
   font-size: 2.3rem;
   font-weight: 700;
-  margin: 0;
+  margin: 0 0 0.7rem 0;
   letter-spacing: -1px;
   text-shadow: 0 2px 8px rgba(37,99,235,0.08);
-  flex: 1 1 auto;
-  text-align: left;
 }
 nav {
   display: flex;
@@ -191,45 +188,36 @@ footer {
   display: none;
   position: absolute;
   background: #fff;
-  border-radius: 1rem;
+  color: #2563eb;
+  border-radius: 1.2rem;
   box-shadow: 0 8px 32px rgba(37,99,235,0.13);
+  padding: 0.5rem 0.7rem;
   min-width: 180px;
-  width: 220px;
-  max-width: 95vw;
-  z-index: 2000;
-  padding: 0.5rem 0;
-  box-sizing: border-box;
-  overflow-y: auto;
-  overflow-x: hidden;
-  max-height: 70vh;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-16px) scaleY(0.98);
-  transition: opacity 0.22s cubic-bezier(.4,2,.6,1), transform 0.22s cubic-bezier(.4,2,.6,1);
-}
-.dropdown-portal.open {
-  display: flex;
+  z-index: 1200;
+  top: 100%;
+  right: 0;
   flex-direction: column;
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0) scaleY(1);
+}
+.dropdown-portal.open,
+.dropdown-portal[style*="display: flex"] {
+  display: flex !important;
 }
 .dropdown-portal a {
   color: #2563eb;
-  text-decoration: none;
-  padding: 1rem 1.5rem;
-  font-weight: 500;
-  border: none;
   background: none;
-  text-align: left;
-  width: 100%;
-  transition: background 0.15s;
-  border-radius: 0.7rem;
-  box-sizing: border-box;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin: 0 0.3rem;
+  padding: 0.7rem 1.2rem;
+  border-radius: 1rem;
+  font-size: 1.05rem;
+  margin: 0.1rem 0;
+  box-shadow: none;
+  transition: background 0.2s, color 0.2s;
+}
+.dropdown-portal a:hover {
+  background: #e0e7ff;
+  color: #1d4ed8;
+}
+body.menu-open {
+  overflow: hidden !important;
 }
 .dropdown-portal a:hover {
   background: #e0e7ff;
