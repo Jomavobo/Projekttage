@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Projekttage Übersicht</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../src/css/base.css">
+  <link rel="stylesheet" href="../src/css/schüler.css">
+  <script src="js/menu.js"></script>
+  <script src="js/schüler.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Projekttage</h1>
+    <button class="burger" id="burger" aria-label="Menü öffnen">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect y="7" width="32" height="3.5" rx="1.5" fill="#2563eb"/>
+        <rect y="14" width="32" height="3.5" rx="1.5" fill="#2563eb"/>
+        <rect y="21" width="32" height="3.5" rx="1.5" fill="#2563eb"/>
+      </svg>
+    </button>
+    <nav id="main-nav"></nav>
+  </header>
+  <main>
+    <section class="hero">
+      <h2>Wähle dein Projekt 🎨🤖⚽</h2>
+      <p>Entdecke spannende Angebote für die Projekttage und sichere dir deinen Platz.</p>
+    </section>
+    <section class="filters">
+      <input type="text" id="search" placeholder="Suche nach Projekten...">
+      <div class="chip" data-category="all">Alle</div>
+      <div class="chip" data-category="Sport">Sport</div>
+      <div class="chip" data-category="Kreativ">Kreativ</div>
+      <div class="chip" data-category="Technik">Technik</div>
+      <div class="chip" data-category="Natur">Natur</div>
+    </section>
+    <section class="grid" id="project-grid">
+      <!-- Projects will be dynamically loaded here -->
+    </section>
+  </main>
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" id="modal-close">&times;</span>
+      <img id="modal-img" src="">
+      <h3 id="modal-title"></h3>
+      <p id="modal-meta" class="meta"></p>
+      <p id="modal-desc"></p>
+      <button class="signup" id="signup-button">Jetzt anmelden</button>
+    </div>
+  </div>
+  <footer>
+    <p>&copy; 2025 Projekttage App. Entwickelt von Bastelhannes.</p>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', loadProjects);
+
+    function loadProjects() {
+      fetch('/api/projects')
+        .then(response => response.json())
+        .then(data => {
+          const grid = document.getElementById('project-grid');
+          grid.innerHTML = '';
+          data.forEach(project => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.onclick = () => openModal(project);
+            card.innerHTML = `
+              <img src="${project.image}" alt="">
+              <div class="card-body">
+                <h3>${project.title}</h3>
+                <p class="meta">${project.teacher} — Jahrgänge ${project.yearGroups}</p>
+                <p class="desc">${project.description}</p>
+                <div class="spots">${project.spots} Plätze frei</div>
+                <div class="progress"><span style="width:${(project.spots / project.maxParticipants) * 100}%"></span></div>
+                <div class="signup">Anmelden</div>
+              </div>
+            `;
+            grid.appendChild(card);
+          });
+        });
+    }
+
+    function openModal(project) {
+      document.getElementById('modal-title').innerText = project.title;
+      document.getElementById('modal-meta').innerText = `${project.teacher} — Jahrgänge ${project.yearGroups}`;
+      document.getElementById('modal-desc').innerText = project.description;
+      document.getElementById('modal-img').src = project.image;
+      document.getElementById('signup-button').onclick = () => signUpForProject(project.id);
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    function signUpForProject(projectId) {
+      fetch(`/api/projects/${projectId}/signup`, { method: 'POST' })
+        .then(response => {
+          if (response.ok) {
+            alert('Erfolgreich angemeldet!');
+            closeModal();
+            loadProjects();
+          } else {
+            alert('Anmeldung fehlgeschlagen.');
+          }
+        });
+    }
+
+    document.getElementById('search').addEventListener('input', filterProjects);
+
+    function filterProjects() {
+      const searchTerm = document.getElementById('search').value.toLowerCase();
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        const title = card.querySelector('h3').innerText.toLowerCase();
+        card.style.display = title.includes(searchTerm) ? 'block' : 'none';
+      });
+    }
+
+    document.querySelectorAll('.chip').forEach(chip => {
+      chip.addEventListener('click', function() {
+        const category = this.getAttribute('data-category');
+        filterByCategory(category);
+      });
+    });
+
+    function filterByCategory(category) {
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        if (category === 'all' || card.querySelector('.meta').innerText.includes(category)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Projekttages</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../src/css/base.css">
+  <link rel="stylesheet" href="../src/css/login.css">
+</head>
+<body style="overflow-x:hidden;">
+  <header style="position:relative;z-index:1001;display:flex;align-items:center;justify-content:space-between;min-height:80px;">
+    <h1 style="margin:0;font-size:2.3rem;letter-spacing:-1px;">Projekttage Login</h1>
+    <button class="burger" id="burger" aria-label="Menü öffnen" style="background:none;border:none;cursor:pointer;padding:0.5rem;margin-left:1.5rem;display:flex;align-items:center;z-index:1101;">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect y="7" width="32" height="3.5" rx="1.5" fill="#2563eb"/>
+        <rect y="14" width="32" height="3.5" rx="1.5" fill="#2563eb"/>
+        <rect y="21" width="32" height="3.5" rx="1.5" fill="#2563eb"/>
+      </svg>
+    </button>
+  </header>
+  <nav id="main-nav-portal" class="dropdown-portal" style="display:none;position:absolute;"></nav>
+  <main>
+    <section class="login-form">
+      <h2>Bitte einloggen</h2>
+      <form id="login-form">
+        <label for="email">E-Mail:</label>
+        <input type="email" id="email" required placeholder="E-Mail eingeben">
+
+        <label for="password">Passwort:</label>
+        <input type="password" id="password" required placeholder="Passwort eingeben">
+
+        <div class="user-type-group">
+          <label><input type="radio" name="user-type" value="pupil" checked> Schüler</label>
+          <label><input type="radio" name="user-type" value="teacher"> Lehrer</label>
+        </div>
+
+        <button type="submit">Einloggen</button>
+        <div id="login-message"></div>
+      </form>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2023 Projekttage App. Alle Rechte vorbehalten.</p>
+  </footer>
+  <script>
+    // Minimal, robust burger menu for login page
+    document.addEventListener('DOMContentLoaded', function() {
+      const burger = document.getElementById('burger');
+      const nav = document.getElementById('main-nav-portal');
+      const menuItems = [
+        { href: "index.html", label: "Startseite" },
+        { href: "login.html", label: "Login" },
+        { href: "schüler.html", label: "Schülerbereich" },
+        { href: "lehrer.html", label: "Lehrerbereich" }
+      ];
+      nav.innerHTML = menuItems.map(item => `<a href="${item.href}">${item.label}</a>`).join('');
+      burger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        nav.classList.toggle('open');
+        // Position below burger
+        const rect = burger.getBoundingClientRect();
+        nav.style.top = (rect.bottom + window.scrollY + 8) + 'px';
+        nav.style.right = (window.innerWidth - rect.right + 2) + 'px';
+      });
+      document.addEventListener('click', function(e) {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+          nav.style.display = 'none';
+          nav.classList.remove('open');
+        }
+      });
+      window.addEventListener('resize', function() {
+        nav.style.display = 'none';
+        nav.classList.remove('open');
+      });
+      window.addEventListener('scroll', function() {
+        nav.style.display = 'none';
+        nav.classList.remove('open');
+      });
+    });
+  </script>
+  <script src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Projekttage App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand: #2563eb;
+      --brand-dark: #1d4ed8;
+      --bg: #f8fafc;
+      --card-bg: #fff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --radius: 18px;
+      --shadow: 0 8px 32px rgba(37,99,235,0.08);
+    }
+    html, body {
+      height: 100%;
+    }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Inter', 'Segoe UI', Roboto, system-ui, sans-serif;
+      background: linear-gradient(120deg, #e0e7ff 0%, #f8fafc 100%);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+      color: #fff;
+      padding: 2.2rem 2rem 1.2rem 2rem;
+      border-radius: 0 0 2.5rem 2.5rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    header h1 {
+      font-size: 2.3rem;
+      font-weight: 700;
+      margin: 0 0 0.7rem 0;
+      letter-spacing: -1px;
+      text-shadow: 0 2px 8px rgba(37,99,235,0.08);
+    }
+    .burger {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+    }
+    .burger svg {
+      display: block;
+    }
+    #main-nav-portal {
+      display: none;
+    }
+    #main-nav-portal.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: 2rem;
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 8px 32px rgba(37,99,235,0.13);
+      min-width: 180px;
+      z-index: 1000;
+      padding: 0.5rem 0;
+    }
+    #main-nav-portal a {
+      color: #2563eb;
+      text-decoration: none;
+      padding: 1rem 1.5rem;
+      font-weight: 500;
+      border: none;
+      background: none;
+      text-align: left;
+      width: 100%;
+      transition: background 0.15s;
+    }
+    #main-nav-portal a:hover {
+      background: #f3f6fb;
+    }
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1rem 2rem 1rem;
+    }
+    .hero {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 3rem 2.5rem 2.5rem 2.5rem;
+      max-width: 480px;
+      text-align: center;
+      margin-top: 2.5rem;
+      margin-bottom: 2.5rem;
+      animation: fadeIn 0.7s cubic-bezier(.4,2,.6,1);
+    }
+    .hero h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0 0 0.7rem 0;
+      color: var(--brand-dark);
+      letter-spacing: -0.5px;
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 1.15rem;
+      margin: 0 0 1.2rem 0;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 0.9rem 2.2rem;
+      border-radius: 1.5rem;
+      text-decoration: none;
+      margin-top: 1.2rem;
+      box-shadow: 0 2px 12px rgba(37,99,235,0.10);
+      transition: background 0.2s, transform 0.1s;
+    }
+    .cta-btn:hover {
+      background: linear-gradient(90deg, #1d4ed8 0%, #2563eb 100%);
+      transform: translateY(-2px) scale(1.04);
+    }
+    footer {
+      background: #f3f6fb;
+      color: var(--muted);
+      text-align: center;
+      padding: 1.2rem 0 1.5rem 0;
+      font-size: 1rem;
+      border-radius: 2rem 2rem 0 0;
+      box-shadow: 0 -2px 12px rgba(37,99,235,0.04);
+      margin-top: auto;
+    }
+    @keyframes fadeIn {
+      from {opacity:0; transform:translateY(30px);}
+      to {opacity:1; transform:translateY(0);}
+    }
+    @media (max-width: 600px) {
+      header { padding: 1.2rem 0.5rem 1rem 0.5rem; }
+      .hero { padding: 2rem 0.7rem; }
+      .hero h2 { font-size: 1.3rem; }
+      #main-nav-portal.open { right: 1rem; top: 3.5rem; min-width: 140px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Willkommen zur Projekttage App</h1>
+    <button class="burger" id="burger" aria-label="Menü öffnen">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect y="7" width="32" height="3.5" rx="1.5" fill="#2563eb"/>
+        <rect y="14" width="32" height="3.5" rx="1.5" fill="#2563eb"/>
+        <rect y="21" width="32" height="3.5" rx="1.5" fill="#2563eb"/>
+      </svg>
+    </button>
+  </header>
+  <nav id="main-nav-portal" class="dropdown-portal"></nav>
+  <main>
+    <section class="hero">
+      <h2>Entdecke spannende Projekte!</h2>
+      <p>Wähle zwischen verschiedenen Projekten und melde dich an.<br>Organisiere und verwalte Projekttage einfach und modern.</p>
+      <a class="cta-btn" href="login.html">Jetzt starten</a>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 Projekttage App. Entwickelt von Bastelhannes.</p>
+  </footer>
+  <script src="js/menu.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/lehrer.js"></script>
+  <script src="js/schüler.js"></script>
+</body>
+</html>
