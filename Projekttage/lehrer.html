@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Projekttage Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --brand: #2563eb;
+      --brand-dark: #1d4ed8;
+      --bg: #f9fafb;
+      --card-bg: #fff;
+      --text: #111827;
+      --muted: #6b7280;
+      --radius: 14px;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    header {
+      background: var(--brand);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 { margin: 0; font-size: 1.3rem; }
+    header a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.4rem 0.8rem;
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: var(--radius);
+    }
+
+    main { padding: 2rem; max-width: 1200px; margin: auto; }
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    .toolbar button {
+      background: var(--brand);
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    .toolbar button:hover { background: var(--brand-dark); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    th, td {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+    th { background: #f3f4f6; font-weight: 600; }
+    tr:hover td { background: #f9fafb; }
+    img.thumb {
+      width: 60px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+    .actions button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-right: 0.5rem;
+    }
+    .actions button.edit { color: var(--brand-dark); }
+    .actions button.delete { color: #dc2626; }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+    .modal-content {
+      background: white;
+      border-radius: var(--radius);
+      width: 90%;
+      max-width: 600px;
+      padding: 1.5rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      animation: fadeIn 0.2s ease;
+    }
+    @keyframes fadeIn {
+      from {opacity:0; transform:scale(0.95);}
+      to {opacity:1; transform:scale(1);}
+    }
+    .modal h2 { margin-top: 0; }
+    .modal label { display: block; margin: 0.6rem 0 0.2rem; font-weight: 500; }
+    .modal input, .modal textarea, .modal select {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+    }
+    .modal textarea { resize: vertical; }
+    .modal-actions {
+      margin-top: 1rem;
+      text-align: right;
+    }
+    .modal-actions button {
+      margin-left: 0.5rem;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .save { background: var(--brand); color: white; }
+    .cancel { background: #e5e7eb; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Projekttage Admin</h1>
+    <a href="E:\Entwicklung\web\Projekttage\schüler.html">Logout</a>
+  </header>
+
+  <main>
+    <div class="toolbar">
+      <h2>Projekte verwalten</h2>
+      <button onclick="openModal()">+ Neues Projekt</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Bild</th>
+          <th>Titel</th>
+          <th>Lehrer</th>
+          <th>Jahrgänge</th>
+          <th>Plätze</th>
+          <th>Aktionen</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><img class="thumb" src="https://picsum.photos/100/60?1"></td>
+          <td>Kreatives Schreiben</td>
+          <td>Herr Müller</td>
+          <td>7–9</td>
+          <td>15/20</td>
+          <td class="actions">
+            <button class="edit" onclick="openModal('Kreatives Schreiben')">✏️</button>
+            <button class="delete" onclick="confirm('Projekt löschen?')">🗑️</button>
+          </td>
+        </tr>
+        <tr>
+          <td><img class="thumb" src="https://picsum.photos/100/60?2"></td>
+          <td>Roboter bauen</td>
+          <td>Frau Schmitt</td>
+          <td>8–10</td>
+          <td>20/20</td>
+          <td class="actions">
+            <button class="edit" onclick="openModal('Roboter bauen')">✏️</button>
+            <button class="delete" onclick="confirm('Projekt löschen?')">🗑️</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <!-- Modal -->
+  <div id="modal" class="modal" onclick="closeModal(event)">
+    <div class="modal-content">
+      <h2 id="modal-title">Neues Projekt</h2>
+      <label>Titel</label>
+      <input type="text" placeholder="Projekttitel">
+      <label>Lehrer</label>
+      <input type="text" placeholder="Lehrkraft">
+      <label>Jahrgänge</label>
+      <input type="text" placeholder="z.B. 7|8|9">
+      <label>Max. Teilnehmer</label>
+      <input type="number" placeholder="z.B. 20">
+      <label>Kategorie</label>
+      <select>
+        <option>Kreativ</option>
+        <option>Sport</option>
+        <option>Technik</option>
+        <option>Natur</option>
+      </select>
+      <label>Beschreibung</label>
+      <textarea rows="5" placeholder="Projektbeschreibung"></textarea>
+      <label>Bild</label>
+      <input type="file">
+
+      <div class="modal-actions">
+        <button class="cancel" onclick="closeModal()">Abbrechen</button>
+        <button class="save">Speichern</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openModal(title) {
+      if (title) {
+        document.getElementById("modal-title").innerText = "Projekt bearbeiten";
+      } else {
+        document.getElementById("modal-title").innerText = "Neues Projekt";
+      }
+      document.getElementById("modal").style.display = "flex";
+    }
+    function closeModal(e) {
+      if (!e || e.target === document.getElementById("modal")) {
+        document.getElementById("modal").style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
