@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Projekttage Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../src/css/base.css">
+  <link rel="stylesheet" href="../src/css/lehrer.css">
+</head>
+<body>
+  <header>
+    <h1>Projekttage Admin</h1>
+    <button class="burger" id="burger" aria-label="Menü öffnen">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect y="7" width="32" height="3.5" rx="1.5" fill="#2563eb"/>
+        <rect y="14" width="32" height="3.5" rx="1.5" fill="#2563eb"/>
+        <rect y="21" width="32" height="3.5" rx="1.5" fill="#2563eb"/>
+      </svg>
+    </button>
+  <nav id="main-nav-portal" class="dropdown-portal"></nav>
+  </header>
+  <main>
+    <section class="admin-hero">
+      <h2>Projekte verwalten</h2>
+      <p>Hier können Sie Projekte für die Projekttage anlegen, bearbeiten und die Anmeldungen der Schüler einsehen.</p>
+      <button id="new-project-btn">+ Neues Projekt</button>
+    </section>
+    <section class="admin-table-section">
+      <table id="project-table">
+        <thead>
+          <tr>
+            <th>Bild</th>
+            <th>Titel</th>
+            <th>Lehrer</th>
+            <th>Jahrgänge</th>
+            <th>Plätze</th>
+            <th>Aktionen</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Projects will be dynamically inserted here -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <!-- Project Modal -->
+  <div id="modal" class="modal" tabindex="-1" aria-modal="true" role="dialog">
+    <div class="modal-content">
+      <h2 id="modal-title">Neues Projekt</h2>
+      <form id="project-form" autocomplete="off">
+        <label for="project-title">Titel</label>
+        <input type="text" id="project-title" placeholder="Projekttitel" required>
+        <label for="project-teacher">Lehrer</label>
+        <input type="text" id="project-teacher" placeholder="Lehrkraft" value="Herr Müller" readonly>
+        <label for="project-grades">Jahrgänge</label>
+        <input type="text" id="project-grades" placeholder="z.B. 7|8|9" required>
+        <label for="project-max">Max. Teilnehmer</label>
+        <input type="number" id="project-max" placeholder="z.B. 20" min="1" required>
+        <label for="project-category">Kategorie</label>
+        <select id="project-category">
+          <option>Kreativ</option>
+          <option>Sport</option>
+          <option>Technik</option>
+          <option>Natur</option>
+        </select>
+        <label for="project-description">Beschreibung</label>
+        <textarea id="project-description" rows="5" placeholder="Projektbeschreibung" required></textarea>
+        <label for="project-image">Bild</label>
+        <input type="file" id="project-image" accept="image/*">
+        <div class="modal-actions">
+          <button type="button" class="cancel" id="modal-cancel">Abbrechen</button>
+          <button type="submit" class="save" id="modal-save">Speichern</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Pupils Modal -->
+  <div id="pupil-modal" class="modal" tabindex="-1" aria-modal="true" role="dialog">
+    <div class="modal-content">
+      <h2>Angemeldete Schüler</h2>
+      <ul id="pupil-list"></ul>
+      <button id="pupil-modal-close" class="cancel">Schließen</button>
+    </div>
+  </div>
+  <footer>
+    <p>&copy; 2025 Projekttage App. Entwickelt von Bastelhannes.</p>
+  </footer>
+  <script src="js/menu.js"></script>
+  <script src="js/lehrer.js"></script>
+</body>
+</html>

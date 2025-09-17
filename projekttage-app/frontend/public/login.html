@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Projekttages</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../src/css/login.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>Projekttage Login</h1>
+    <button class="burger" id="burger" aria-label="Menü öffnen">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect y="7" width="32" height="3.5" rx="1.5" fill="#2563eb"/>
+        <rect y="14" width="32" height="3.5" rx="1.5" fill="#2563eb"/>
+        <rect y="21" width="32" height="3.5" rx="1.5" fill="#2563eb"/>
+      </svg>
+    </button>
+  <nav id="main-nav-portal" class="dropdown-portal"></nav>
+  </header>
+  <main>
+    <section class="login-form">
+      <h2>Bitte einloggen</h2>
+      <form id="login-form">
+        <label for="username">Nutzername:</label>
+        <input type="username" id="username" required placeholder="Nutzername eingeben">
+
+        <label for="password">Passwort:</label>
+        <input type="password" id="password" required placeholder="Passwort eingeben">
+
+        <div class="user-type-group">
+          <label><input type="radio" name="user-type" value="pupil" checked> Schüler</label>
+          <label><input type="radio" name="user-type" value="teacher"> Lehrer</label>
+        </div>
+
+        <button type="submit">Einloggen</button>
+        <div id="login-message"></div>
+      </form>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 Projekttage App. Entwickelt von Bastelhannes.</p>
+  </footer>
+  <script src="js/menu.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

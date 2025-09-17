@@ -1,0 +1,78 @@
+@import url('base.css');
+/* login.html specific styles */
+.login-form {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  padding: 2.5rem 2rem 2rem 2rem;
+  max-width: 800px;
+  margin: 2.5rem auto;
+  text-align: center;
+}
+.login-form h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--brand-dark);
+  margin-bottom: 1.2rem;
+}
+.login-form label {
+  display: inside;
+
+  margin: 1.1rem 0 1.2rem 0;
+  font-weight: 600;
+  color: var(--text);
+}
+.login-form input[type="username"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 0.7rem 1rem 0.7rem 1rem;
+  border: 1.5px solid #e0e7ef;
+  border-radius: 0.7rem;
+  font-size: 1rem;
+  background: #f8fafc;
+  margin-bottom: 0.2rem;
+  transition: border 0.2s;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+.login-form input:focus {
+  border: 1.5px solid #2563eb;
+  outline: none;
+  background: #fff;
+}
+.login-form button[type="submit"] {
+  background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 0.7rem 2rem;
+  border-radius: 1.5rem;
+  border: none;
+  margin-top: 1.2rem;
+  box-shadow: 0 2px 12px rgba(37,99,235,0.10);
+  transition: background 0.2s, transform 0.1s;
+  cursor: pointer;
+}
+.login-form button[type="submit"]:hover {
+  background: linear-gradient(90deg, #1d4ed8 0%, #2563eb 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+.user-type-group {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 1rem 0 0.5rem 0;
+}
+.user-type-group label {
+  font-weight: 500;
+  color: var(--muted);
+  font-size: 1rem;
+}
+.user-type-group input[type="radio"] {
+  margin-right: 0.3rem;
+}
+#login-message {
+  margin-top: 0.7rem;
+  min-height: 1.2em;
+  font-size: 1rem;
+}
